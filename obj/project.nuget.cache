@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "GDNJfeo3T9BZmzNRQDIROijlTBKRMp64sYv7UCZS8A3BG2LfBA7pG4m055wdQcDGdUuYPTSVoGEbHynvWRLeXQ==",
+  "dgSpecHash": "B3sLEvcR/wgypo47IE6s5Q+xlVVSKaT/pVkRyUp7dYKAKDcFlg1HHQfSrOfwvrZEp8qTFqz2pkRiYCfFr/jcWQ==",
   "success": true,
   "projectFilePath": "/mnt/Study/John/Office/STIL/aamarPay-asp-dot-net-core/aamarPay-asp-dot-net-core.csproj",
   "expectedPackageFiles": [
     "/home/john/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/home/john/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/john/.nuget/packages/newtonsoft.json/13.0.2-beta1/newtonsoft.json.13.0.2-beta1.nupkg.sha512",
     "/home/john/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "/home/john/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "/home/john/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

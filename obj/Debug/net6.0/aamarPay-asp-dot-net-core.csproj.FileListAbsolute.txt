@@ -52,3 +52,4 @@ D:/John/Office/STIL/aamarPay-asp-dot-net-core/obj/Debug/net6.0/ref/aamarPay-asp-
 /mnt/Study/John/Office/STIL/aamarPay-asp-dot-net-core/obj/Debug/net6.0/aamarPay-asp-dot-net-core.pdb
 /mnt/Study/John/Office/STIL/aamarPay-asp-dot-net-core/obj/Debug/net6.0/aamarPay-asp-dot-net-core.genruntimeconfig.cache
 /mnt/Study/John/Office/STIL/aamarPay-asp-dot-net-core/obj/Debug/net6.0/ref/aamarPay-asp-dot-net-core.dll
+/mnt/Study/John/Office/STIL/aamarPay-asp-dot-net-core/bin/Debug/net6.0/Newtonsoft.Json.dll

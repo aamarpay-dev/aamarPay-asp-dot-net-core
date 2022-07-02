@@ -1,8 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Text.Json;
-using System.Text.Json.Nodes;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+
+/**
+ *
+ * 
+ *This is only for JSON data
+ *
+ * 
+ */
 
 namespace aamarPay_asp_dot_net_core.Controllers
 {
@@ -11,56 +19,47 @@ namespace aamarPay_asp_dot_net_core.Controllers
     public class PaymentController : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        
 
-        public PaymentController(IHttpClientFactory httpClientFactory) { _httpClientFactory = httpClientFactory; }
+        public PaymentController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
 
         [HttpPost("payment")]
+        [Consumes("application/json")]
         public async Task<ActionResult> Payment([FromBody] dynamic formData)
         {
             var payment = new StringContent(
-                        JsonSerializer.Serialize(formData),
-                        System.Text.Encoding.UTF8,
-                        "application/json");
+                JsonSerializer.Serialize(formData),
+                System.Text.Encoding.UTF8,
+                "application/json");
 
             var httpClient = _httpClientFactory.CreateClient();
-            var httpResponseMessage = await httpClient.PostAsync("https://sandbox.aamarpay.com/jsonpost.php", payment);
+            var httpResponseMessage =  await httpClient.PostAsync("https://sandbox.aamarpay.com/jsonpost.php", payment) ;
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
             return Ok(response);
         }
+
+        /**
+         * This api receives form-data. Content-Type is x-www-form-urlencoded
+         */
         [HttpPost("payment-callback")]
-        public async Task<ActionResult> Callback([FromBody] dynamic responsePayment)
+        [Consumes("application/x-www-form-urlencoded")]
+        public Task<ActionResult> Callback()
         {
-            //Trace.WriteLine("oauhcouahoecihoie",responsePayment);
-            Console.WriteLine("ascasjcpiojsp ",responsePayment);
+            dynamic response;
+            var dict = new Dictionary<string, string>();
             
-            return Ok(responsePayment);
+            foreach (var key in HttpContext.Request.Form.Keys)
+            {
+                var value = HttpContext.Request.Form[key];
+                dict.Add(key, value);
+            }
+            
+            response = JsonConvert.SerializeObject(dict);
+            
+            return Task.FromResult<ActionResult>(Ok(response));
         }
     }
-    
-}
-
-public class FormData
-{
-    public string? store_id { get; set; }
-    public string? signature_key { get; set; }
-    public string? tran_id { get; set; }
-    public string? success_url { get; set; }
-    public string? fail_url { get; set; }
-    public string? cancel_url { get; set; }
-    public int? amount { get; set; }
-    public string? currency { get; set; }
-    public string? desc { get; set; }
-    public string? cus_name { get; set; }
-    public string? cus_email { get; set; }
-    public string? cus_add1 { get; set; }
-    public string? cus_add2 { get; set; }    
-    public string? cus_city { get; set; }
-    public string? cus_state { get; set; }
-    public string? cus_country { get; set; }
-    public string? cus_phone { get; set; }
-    public string? opt_a { get; set; }   
-    public string? opt_b { get; set; }
-    public string? opt_c { get; set; }
-    public string? opt_d { get; set; }
-    public string type { get; set; }
 }
